@@ -77,6 +77,7 @@ ORDER BY 2 DESC ;
 SELECT *
 FROM EMPLOYEES
 ORDER BY FIRST_NAME ASC ,LAST_NAME DESC ;
+
 --Task 11: get me unique first name row numbers in a table
 
 
@@ -93,3 +94,6 @@ ORDER BY FIRST_NAME ASC ,LAST_NAME DESC ;
 
 
 --Task 16: add @gmail.com and name new column to full_email
+SELECT EMAIL || '@gmail.com' AS "full_email"
+FROM EMPLOYEES ;
+
