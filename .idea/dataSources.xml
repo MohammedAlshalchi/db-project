@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="HR" uuid="c1c2386c-5d65-48d6-9043-7db401af3815">
+    <data-source source="LOCAL" name="HR" uuid="77e7a31f-5383-4aab-a51b-c27bb48834ea">
       <driver-ref>oracle.19</driver-ref>
       <synchronize>true</synchronize>
       <auto-commit>false</auto-commit>
       <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
       <jdbc-url>jdbc:oracle:thin:@18.205.117.23:1521:XE</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="libraty2DB" uuid="c10d18b6-d87a-488f-9d73-7b5cae8765aa">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://54.157.236.232:3306/library2</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
