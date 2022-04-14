@@ -37,28 +37,131 @@ GROUP BY oe.OrderID;
 
 -- CUSTOMERS TABLE
 -- 1.	Display CUSTOMERNAME AND ADDRESS IF CONTACTNAME is Pedro Afonso
-SELECT CUSTOMERNAME, ADDRESS
-FROM customers
-where contactName LIKE'Pedro Afonso';
+Select CustomerName, Address
+From Customers
+where ContactName = 'Pedro Afonso';
+
+
 -- 2.	Display CUSTOMERS FullAddress(alias) in below format by concatenating
 -- 3.	ADDRESS , CITY , POSTALCODE, COUNTRY
+SELECT CUSTOMERNAME , ADDRESS ||','||CITY||','||POSTALCODE||','||COUNTRY AS FullAddress
+FROM CUSTOMERS;
+
+
+
+
 -- 4.	Display CUSTOMERS THAT DOES NOT HAVE POSTALCODE
+SELECT customerName
+FROM CUSTOMERS
+WHERE POSTALCODE IS NULL ;
+
+
+select customerName
+from Customers
+where length(postalCode) =  0;
+
+
+
+
+
 -- 5.	Display all CUSTOMERS with POSTALCODE contains space or -
+SELECT *
+FROM CUSTOMERS
+WHERE POSTALCODE LIKE '% %' OR POSTALCODE LIKE '%-%';
+
+
+
+
 -- 6.	Display CUSTOMERS with ID between 10-25
+SELECT CUSTOMERNAME
+FROM CUSTOMERS
+WHERE CUSTOMERID BETWEEN 10 AND 25;
+
+
 -- 7.	Display CUSTOMERS if address ends with Rd. Blvd. or Road
+SELECT CUSTOMERNAME
+FROM CUSTOMERS
+WHERE ADDRESS LIKE '%Rd.' OR ADDRESS LIKE '% Blvd.' OR ADDRESS LIKE '%Road';
+
+
+--8
 -- a.	GET THE COUNT OF ABOVE RESULT WITH COUNT(*)
 -- 8.	Display All Customers in UK , US if POSTALCODE is not WX3 6FW, 97403
+SELECT COUNT(*)
+FROM CUSTOMERS
+WHERE COUNTRY IN ('UK','USA')
+AND  POSTALCODE NOT LIKE '%WX3%' AND POSTALCODE NOT LIKE '%6FW%' AND POSTALCODE NOT LIKE '%97403%';
+
+SELECT *
+FROM Customers
+Where Country in ('USA','UK')
+  And PostalCode Not Like '%WX3%' and PostalCode Not Like '%6FW%' and PostalCode Not Like '%97403%';
+
+
 -- 9.	Display CUSTOMERS Count in CITY Of LONDON
+SELECT COUNT(CITY)
+FROM CUSTOMERS
+WHERE CITY = 'LONDON';
+
+SELECT City, Count(*)
+FROM Customers
+Group By City
+Having City = 'London';
+
+
 -- 10.	Display CUSTOMERS Count for EACH CITY
+SELECT CITY
+FROM CUSTOMERS
+GROUP BY CITY;
+--select city,customername from customers group by city =====> WHY
+
+
 -- 11.	Display CUSTOMERS Count for EACH COUNTRY
+SELECT COUNTRY
+FROM CUSTOMERS
+GROUP BY COUNTRY;
+
 -- 12.	Display CUSTOMERS Count for EACH COUNTRY
+
+
+
 -- 13.	Filter the result only display if Count is more than 5
---
+SELECT COUNTRY
+FROM CUSTOMERS
+GROUP BY COUNTRY
+HAVING COUNT(*) > 5;
+
+Select Country, count(*) as Count
+From Customers
+Group By Country
+having count(*) > 5;
+
+select country, count(country)
+from customers
+group by country
+having count(country)> 5;
+
 -- CATEGORIES TABLE
 -- 14.	Display All Categories contains 'es' in Description excluding coffees
+SELECT *
+FROM CATEGORIES
+WHERE DESCRIPTION LIKE '%es%' AND  DESCRIPTION NOT  LIKE 'coffees';
+
+
 -- 15.	Display CATEGORYNAME with ID of 1, 5 , 7
+SELECT CATEGORYID,CATEGORYNAME
+FROM CATEGORIES
+WHERE  CATEGORYID IN (1,5,7);
+
 -- 16.	Display CATEGORYNAME and LENGTH of DESCRIPTION
+SELECT CATEGORYNAME, LENGTH(DESCRIPTION)
+FROM CATEGORIES;
+
 -- 17.	 Display MAX(LENGTH(DESCRIPTION))
+SELECT MAX(LENGTH(DESCRIPTION))
+FROM CATEGORIES;
+
+--select max(length(description) ), categoryname from categories ===> WHY
 
 ---- PART 2
 

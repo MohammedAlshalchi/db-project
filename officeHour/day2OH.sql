@@ -40,7 +40,8 @@ WHERE DEPARTMENTS.DEPARTMENT_ID IN (80,40);
 
 
 
--- 5. write a SQL query to find those employees whose first name contains a letter ‘z’. Return first name, last name, department, city,
+-- 5. write a SQL query to find those employees whose first name contains a letter ‘z’.
+-- Return first name, last name, department, city,
 -- and state province.
 SELECT FIRST_NAME,LAST_NAME,DEPARTMENT_NAME,CITY,STATE_PROVINCE
 FROM EMPLOYEES
@@ -100,7 +101,8 @@ FROM DEPARTMENTS
          --INNER JOIN LOCATIONS --SAME
 JOIN LOCATIONS
 ON DEPARTMENTS.LOCATION_ID = LOCATIONS.LOCATION_ID;
--- 9. write a SQL query to find the employees and their managers. Return the first name of the employee and manager.
+-- 9. write a SQL query to find the employees and their managers.
+-- Return the first name of the employee and manager.
 
 SELECT E.FIRST_NAME AS EMPLOYEE ,M.FIRST_NAME AS MAHAGER
 FROM EMPLOYEES E
@@ -111,25 +113,60 @@ ORDER BY M.FIRST_NAME;
 
 
 
--- 10 write a SQL query to find those employees who have or not any department. Return first name, last name, department ID, department name.
+-- 10 write a SQL query to find those employees who have or not any department.
+-- Return first name, last name, department ID, department name.
+SELECT E.FIRST_NAME,E.LAST_NAME,E.DEPARTMENT_ID,DEPARTMENT_NAME
+FROM EMPLOYEES E
+LEFT OUTER JOIN DEPARTMENTS D
+ON E.DEPARTMENT_ID = D.DEPARTMENT_ID;
 
 
--- 11. write a SQL query to find the employees and their managers. These managers do not work under any manager. Return the first name of the employee and manager.
 
 
--- 12.write a SQL query to find those employees who work in a department where the employee of last name 'Taylor' works. Return first name, last name and department ID
+-- 11. write a SQL query to find the employees and their managers.
+-- These managers do not work under any manager.
+-- Return the first name of the employee and manager.
+SELECT E.first_name AS "Employee Name",
+       M.first_name AS "Manager"
+FROM employees E
+         LEFT OUTER JOIN employees M
+                         ON E.manager_id = M.employee_id;
+
+--second solution
+SELECT E.FIRST_NAME, M.FIRST_NAME
+FROM EMPLOYEES E
+         LEFT OUTER JOIN (SELECT *
+                          FROM EMPLOYEES
+                          WHERE EMPLOYEE_ID IN
+                                (SELECT DISTINCT MANAGER_ID FROM EMPLOYEES WHERE MANAGER_ID IS NOT NULL)) M
+                         ON M.EMPLOYEE_ID = E.MANAGER_ID;
+
+-- 12.write a SQL query to find those employees who work in a department where
+-- the employee of last name 'Taylor' works.
+-- Return first name, last name and department ID
+SELECT E.first_name, E.last_name, E.department_id , S.FIRST_NAME AS FIRST, S.LAST_NAME AS LAST
+FROM employees E
+         JOIN employees S
+              ON E.department_id = S.department_id
+WHERE S.last_name = 'Taylor';
 
 
+SELECT E.first_name, E.last_name, E.department_id --, S.FIRST_NAME, S.LAST_NAME
+FROM employees E
+         JOIN employees S
+              ON E.department_id = S.department_id
+WHERE S.last_name = 'Taylor';
 
--- 13.write a SQL query to find those employees who get higher salary than the employee whose ID is 163. Return first name, last name.
-SELECT FIRST_NAME,LAST_NAME,SALARY
+
+-- 13.write a SQL query to find those employees who get higher salary than the employee whose ID is 163.
+-- Return first name, last name.
+         SELECT FIRST_NAME,LAST_NAME,SALARY
 FROM EMPLOYEES
-    WHERE SALARY > (
-        -- FIRST I WILL GET THE SALARY OF THAT EMPLOYEE
-        SELECT SALARY
-        FROM EMPLOYEES
-        WHERE EMPLOYEE_ID = 163
-        );
+WHERE SALARY>(
+-- FIRST I WİLL GET THE SALARY OF THAT EMPLOYEE
+    SELECT SALARY
+    FROM EMPLOYEES
+    WHERE EMPLOYEE_ID=163);
 
 
 
