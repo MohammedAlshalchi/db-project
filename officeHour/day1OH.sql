@@ -79,21 +79,29 @@ FROM EMPLOYEES
 ORDER BY FIRST_NAME ASC ,LAST_NAME DESC ;
 
 --Task 11: get me unique first name row numbers in a table
-
+SELECT COUNT(DISTINCT FIRST_NAME)
+FROM EMPLOYEES;
 
 --Task 12: get me average salary of employees
+SELECT ROUND (AVG(SALARY),0)
+FROM EMPLOYEES;
 
+SELECT  AVG(SALARY)
+FROM EMPLOYEES;
 
 --Task 13: get me min salary of employees
-
+SELECT MIN(SALARY)
+FROM EMPLOYEES;
 
 --Task 14: get me max salary of employees
-
+SELECT MAX(SALARY)
+FROM EMPLOYEES;
 
 --Task 15: get me total salary of employees
+SELECT SUM(SALARY)
+FROM EMPLOYEES;
 
 
 --Task 16: add @gmail.com and name new column to full_email
-SELECT EMAIL || '@gmail.com' AS "full_email"
-FROM EMPLOYEES ;
-
+SELECT LOWER(FIRST_NAME)  || '@gmail.com' AS FULL_EMAIL
+FROM EMPLOYEES;
