@@ -19,6 +19,9 @@ public class GettingColumnInformation {
         // We want to extract column information from above ResultSet object
         // First we need to ResultSetMetaData object by calling below method
         ResultSetMetaData rsmd = rs.getMetaData();
+
+
+
         // This ResultSetMetaData has 2 methods we care about
         //  getColumnCount method to get the count of column
         //  getColumnName or getColumnLabel using 1 based index
