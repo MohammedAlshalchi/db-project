@@ -278,3 +278,132 @@ WHERE SALARY = (SELECT MIN(SALARY)
 
 
 
+
+CREATE TABLE MOhammed (
+ Emp_Id INTEGER PRIMARY KEY ,
+ FirstName varchar(30) not null,
+ LastName varchar(30),
+ JobTitle varchar(20)
+
+);
+
+
+
+SELECT *
+FROM MOhammed;
+
+INSERT INTO MOhammed(emp_id, firstname, lastname, jobtitle)
+VALUES (1,'Mohammed','Alshalchi','Tester');
+
+SELECT *
+FROM MOhammed;
+
+
+INSERT INTO  MOhammed(emp_id, firstname, lastname, jobtitle)
+VALUES (2,'Dalya','Ibrahim','NHA');
+
+
+SELECT *
+FROM MOhammed;
+
+
+UPDATE MOhammed
+SET JobTitle = 'Tester'
+WHERE  Emp_Id =2;
+
+SELECT *
+FROM MOhammed;
+
+UPDATE MOhammed
+SET  JobTitle = 'sdet'
+WHERE Emp_Id = 2;
+
+SELECT *
+FROM MOhammed;
+
+
+INSERT INTO MOhammed
+values (3,'Mariam','Mohammed','Dentist');
+
+
+SELECT *
+FROM MOhammed;
+
+
+
+DELETE FROM MOhammed
+WHERE Emp_Id =3;
+
+
+SELECT *
+FROM MOhammed;
+
+
+ALTER TABLE MOhammed
+ADD SALARY INTEGER;
+
+
+SELECT *
+FROM MOhammed;
+
+
+
+
+
+
+ALTER TABLE MOhammed
+    RENAME COLUMN SALARY
+        TO ANNUAL_SALARY;
+
+SELECT *
+FROM MOhammed;
+
+
+
+
+ALTER TABLE MOhammed RENAME TO MohammedAlasalchi;
+
+SELECT * FROM MohammedAlasalchi;
+
+
+
+TRUNCATE TABLE MohammedAlasalchi;
+
+
+DROP TABLE MohammedAlasalchi;
+
+
+
+
+
+
+-- get me, firstName ,lastName , department_name ,city fo all employee
+SELECT FIRST_NAME, LAST_NAME , DEPARTMENT_NAME , CITY
+FROM EMPLOYEES e
+    INNER JOIN DEPARTMENTS d
+ON e.DEPARTMENT_ID = d.DEPARTMENT_ID
+INNER JOIN LOCATIONS l
+on d.LOCATION_ID = l.LOCATION_ID;
+
+
+
+
+-- HOW TO FIND DUPLICATE NAMES IN EMPLOYEES TABLE
+SELECT FIRST_NAME ,COUNT(*)
+FROM EMPLOYEES
+GROUP BY FIRST_NAME
+HAVING COUNT(*) >1;
+
+
+SELECT JOB_TITLE
+FROM JOBS;
+
+
+
+
+
+
+
+
+
+
